@@ -1,0 +1,45 @@
+Planes with Planeseats :
+Sparrow with Planeseats A(1-14 economy), B(1-14 business), C(1-10 economy), C(11-14 business)
+Hawk with Planeseats A(1-14 economy), B(1-14 business), C(1-10 economy), C(11-14 business)
+Eagle with Planeseats A(1-14 business), B(1-14 business), C(1-14 business), D(1-14 economy)
+
+Flight :
+1.UK to Spain on Sparrow
+2.UK to Germany on Hawk
+3.UK to Sri Lanka on Eagle
+4.Japan to France on Eagle
+5.Norway to Egypt on Eagle
+
+Passenger :
+Kazuo Nakamura
+Kira Chrollo 
+Atlas Okita
+Amani Ishigami
+Hisoka Miyamisui
+Ajin Yasumoto
+
+Bookings :
+Kazuo Nakamura for Flight 1, seat A3
+Kazuo Nakamura for Flight 2, seat B1
+Kazuo Nakamura for Flight 2, seat B2
+Kazuo Nakamura for Flight 5, seat D1
+
+Kira Chrollo for Flight 4, seat B1
+Kira Chrollo for Flight 5, seat A2
+Kira Chrollo for Flight 1, seat B3
+
+Atlas Okita for Flight 3, seat C2
+Atlas Okita for Flight 3, seat C3
+Atlas Okita for Flight 5, seat D9
+
+Amani Ishigami for Flight 1, seat B2
+Hisoka Miyamisui for Flight 2, seat A1
+Ajin Yasumoto for Flight 4, seat C2
+
+**************************************
+Admins should be able to add Planes, schedule Flights, create and assign planeseats.
+Passengers should be able to book flights, view flights, view their bookings.
+
+
+
+
