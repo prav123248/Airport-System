@@ -4,9 +4,8 @@
 #include <vector>
 #include "../Header Files/FlightSeat.h"
 #include "../Header Files/Booking.h"
-
+#include "../Header Files/Plane.h"
 using namespace std;
-
 
 class Plane;
 
@@ -22,6 +21,6 @@ class Flight {
         string date;
 
     public:
-        Flight(string start, string end, vector<FlightSeat> seats);
+        Flight(string start, string end, vector<FlightSeat> seats, Plane servedPlane);
         void addBooking(Booking book);
 };

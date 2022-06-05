@@ -77,3 +77,26 @@ void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
             
     }
 }
+
+vector<PlaneSeat> PlaneSeat::loadSeatObjects(string seats) {
+
+    vector<PlaneSeat> seatObjects;
+
+    string seatBuffer;
+    for (auto i : seats) {
+        if (i == ',') {
+    
+            for (int i=0; i<allPlaneSeats.size(); i++) {
+                if (seatBuffer == allPlaneSeats[i].getSeat()) {
+                    seatObjects.push_back(allPlaneSeats[i]);
+                    break;
+                }
+            }
+        }
+        else {
+            seatBuffer += i;
+        }
+    }
+
+    return seatObjects;
+}

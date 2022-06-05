@@ -3,10 +3,11 @@
 using namespace std;
 
 
-Flight::Flight(string start, string end, vector<FlightSeat> seats) {
+Flight::Flight(string start, string end, vector<FlightSeat> seats, Plane servingPlane) {
     this->start = start;
     this->end = end;
     this->seats = seats;
+    this->plane = &servingPlane;
 };
 
 void Flight::addBooking(Booking book) {
