@@ -47,29 +47,50 @@ string Admin::options() {
         
         }
         else if (choice == 3) {
-            string chosenPlane;
-            cout << "Enter the number beside the desired Plane:" << endl;
-            for (int i=1; i<Plane::allPlanes.size(); i++) {
-                //cout << i;
-                //cout << ".";
-                cout << i + "." + Plane::allPlanes[i-1].getName() << endl;
-            }
             
+            cout << "Enter the number beside the desired Plane:" << endl;
+            cout << Plane::allPlanes.size() << endl;
+            for (int i=1; i<=Plane::allPlanes.size(); i++) {
+                cout << i;
+                cout << ".";
+                cout << Plane::allPlanes[i-1].getName() << endl;
+            }
+
+            cout << "Enter the number beside the desired Plane:" << endl;
+            int chosenPlane;
+            cin >> chosenPlane;
+            
+            cout << chosenPlane;
+
+            if (chosenPlane >= 0 and chosenPlane <= Plane::allPlanes.size()) {
+                string start;
+                string end;
+               
+                cout << "Enter the Start location :" << endl;
+                //getline(cin, start);
+                cin >> start;
+
+                cout << "Enter the End location :" << endl;
+                cin >> end;               
+               
+                //getline(cin,end);
+
+                cout << start + " is the departure location" << endl;
+                cout << end + " is the destination." << endl;
+                cout << Plane::allPlanes[chosenPlane-1].getName();
+                cout << " is the plane.";
+               
+            }
+
+            /*
+            cout << "Enter the number beside the desired Plane:" << endl;
+            string chosenPlane;
             getline(cin, chosenPlane);
             int chosenPlaneNum = stoi(chosenPlane);
             chosenPlaneNum -= 1;
-            if (chosenPlaneNum >= 0 and chosenPlaneNum <= Plane::allPlanes.size()) {
-               string start;
-               string end;
-               
-               cout << "Enter the Start location :" << endl;
-               getline(cin, start);
 
-               cout << "Enter the End location :" << endl;
-               getline(cin,end);
 
-               
-            }
+            */
         
         }
         else if (choice == 4) {
