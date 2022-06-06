@@ -47,23 +47,26 @@ string Admin::options() {
         
         }
         else if (choice == 3) {
-            int chosenPlane;
+            string chosenPlane;
             cout << "Enter the number beside the desired Plane:" << endl;
             for (int i=1; i<Plane::allPlanes.size(); i++) {
+                //cout << i;
+                //cout << ".";
                 cout << i + "." + Plane::allPlanes[i-1].getName() << endl;
             }
             
-            cin >> chosenPlane;
-            chosenPlane -= 1;
-            if (chosenPlane >= 0 and chosenPlane <= Plane::allPlanes.size()) {
+            getline(cin, chosenPlane);
+            int chosenPlaneNum = stoi(chosenPlane);
+            chosenPlaneNum -= 1;
+            if (chosenPlaneNum >= 0 and chosenPlaneNum <= Plane::allPlanes.size()) {
                string start;
                string end;
                
                cout << "Enter the Start location :" << endl;
-               cin >> start;
+               getline(cin, start);
 
                cout << "Enter the End location :" << endl;
-               cin >> end;
+               getline(cin,end);
 
                
             }
