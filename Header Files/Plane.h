@@ -23,5 +23,6 @@ class Plane {
         static vector<Plane> allPlanes;
         int getId();
         string getName();
+        vector<PlaneSeat> getPlaneSeats();
 
 };

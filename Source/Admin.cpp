@@ -22,12 +22,12 @@ string Admin::options() {
         cout << "5. Logout" << endl;
 
         cin >> choice;
-
+        cin.ignore(10000, '\n');
         if (choice == 1) {
             string seats;
             cout << "Enter the seat names (separated and conclude with commas, include * for business class seats):" << endl;
             cin >> seats;
-
+            cin.ignore(10000, '\n');
             PlaneSeat::loadPlaneSeats(seats, true);
 
 
@@ -38,10 +38,10 @@ string Admin::options() {
             string seats;
             cout << "Enter the plane name: "<< endl;
             cin >> planeName;
-
+            cin.ignore(10000, '\n');
             cout << "Enter the seat names (separated and conclude with commas, include * for business class seats):" << endl;
             cin >> seats;
-
+            cin.ignore(10000, '\n');
             Plane newPlane(planeName, seats); 
         
         
@@ -59,38 +59,34 @@ string Admin::options() {
             cout << "Enter the number beside the desired Plane:" << endl;
             int chosenPlane;
             cin >> chosenPlane;
-            
-            cout << chosenPlane;
+            chosenPlane -= 1;
+            cin.ignore(10000, '\n');
+            cin.clear();
 
             if (chosenPlane >= 0 and chosenPlane <= Plane::allPlanes.size()) {
                 string start;
                 string end;
-               
-                cout << "Enter the Start location :" << endl;
-                //getline(cin, start);
-                cin >> start;
+                string date;
 
+                cout << "Enter the Start location :" << endl;
+                getline(cin, start);
                 cout << "Enter the End location :" << endl;
-                cin >> end;               
-               
-                //getline(cin,end);
+                getline(cin,end);            
+                
+                cout << "Enter the Date of the Flight :" << endl;
+                getline(cin, date);
 
                 cout << start + " is the departure location" << endl;
                 cout << end + " is the destination." << endl;
-                cout << Plane::allPlanes[chosenPlane-1].getName();
-                cout << " is the plane.";
+                cout << Plane::allPlanes[chosenPlane].getName();
+                cout << " is the plane." << endl;
                
+                Flight newFlight(start, end, Plane::allPlanes[chosenPlane], date);
             }
 
-            /*
-            cout << "Enter the number beside the desired Plane:" << endl;
-            string chosenPlane;
-            getline(cin, chosenPlane);
-            int chosenPlaneNum = stoi(chosenPlane);
-            chosenPlaneNum -= 1;
-
-
-            */
+            for (int i=0; i<Flight::allFlights.size(); i++) {
+                cout << "From " << Flight::allFlights[i].getStart() << " to " << Flight::allFlights[i].getEnd() << " on "  << Flight::allFlights[i].getDate() << " using Plane " << Flight::allFlights[i].getPlane().getName() << endl;
+            }
         
         }
         else if (choice == 4) {

@@ -21,6 +21,11 @@ class Flight {
         string date;
 
     public:
-        Flight(string start, string end, vector<FlightSeat> seats, Plane servedPlane);
+        Flight(string start, string end,Plane servedPlane, string date);
         void addBooking(Booking book);
+        static vector<Flight> allFlights;
+        string getStart();
+        string getEnd();
+        string getDate();
+        Plane getPlane();
 };

@@ -32,3 +32,7 @@ int Plane::getId() {
 string Plane::getName() {
     return this->name;
 }
+
+vector<PlaneSeat> Plane::getPlaneSeats() {
+    return this->planeSeats;
+}
