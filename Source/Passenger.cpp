@@ -1,17 +1,16 @@
 #include <string>
 #include <iostream>
+#include "../Header Files/Account.h"
 #include "../Header Files/Passenger.h"
 #include "../Header Files/Booking.h"
 
 using namespace std;
 
-Passenger::Passenger(string firstName, string secondName, Booking* book, string password) : Account(firstName, secondName, password){
-    this->bookings.push_back(book);
+Passenger::Passenger(string firstName, string secondName, string password) : Account(firstName, secondName, password){
 }
 
 
 void Passenger::book(Booking book) {
-    book.assignPassenger(this);
     this->bookings.push_back(&book);
 
 }

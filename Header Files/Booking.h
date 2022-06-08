@@ -19,7 +19,7 @@ class Booking {
         FlightSeat* bookedSeat;
 
     public:
-        Booking(Flight* flight, FlightSeat* seat);
+        Booking(Flight* flight, FlightSeat* , Passenger* booker);
         string getPassenger();
-        void assignPassenger(Passenger* person);
+
 };

@@ -35,9 +35,13 @@ int main() {
     
     loadFile();
 
-    Admin adminAcc("The","Doctor", "sht");
+    Account acc("default", "account", "pass", true);
+    acc.options();
 
-    cout << adminAcc.options();
+
+    //Admin adminAcc("The","Doctor", "sht");
+
+    //cout << adminAcc.options();
 
     return 0;
 }

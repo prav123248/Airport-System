@@ -15,7 +15,6 @@ Flight::Flight(string start, string end, Plane servingPlane, string date) {
     for (int i=0; i<planeSeat.size(); i++) {
         FlightSeat newFlightSeat(this, &planeSeat[i]);
         seatsArray.push_back(newFlightSeat);
-        cout << "Flight is added" << endl;
     }
 
     this->seats = seatsArray;
@@ -39,9 +38,28 @@ string Flight::getDate() {
     return this->date;
 }
 
-
-
 Plane Flight::getPlane() {
     return *this->plane;
 }
 
+void Flight::bookSeat(Passenger* booker) {
+    for (int i=0; i<this->seats.size(); i++) {
+        cout << i;
+        cout << " : ";
+        cout << this->seats[i].getSeat()->getSeat();
+
+        if (this->seats[i].getSeat()->getSeatType() == economy) {
+            cout << " - Economy";
+        }
+        else {
+            cout << " - Business";
+        }
+
+    }
+
+    cout << "Enter the number of the desired seat:";
+    int seatChoice;
+    cin >> seatChoice;
+
+    Booking newBooking(this, & this->seats[seatChoice], booker);
+}

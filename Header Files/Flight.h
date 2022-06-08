@@ -28,4 +28,5 @@ class Flight {
         string getEnd();
         string getDate();
         Plane getPlane();
+        void bookSeat(Passenger* booker);
 };

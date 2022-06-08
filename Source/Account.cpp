@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
 #include "../Header Files/Account.h"
+#include "../Header Files/Passenger.h"
+#include "../Header Files/Admin.h"
+#include "../Header Files/Flight.h"
 
 int Account::nextId = 0;
-vector<Account> allAccounts;
+vector<Account> Account::allAccounts;
 
 
-Account::Account(string firstName, string secondName, string password) {
+Account::Account(string firstName, string secondName, string password, bool defaultAcc) {
     this->firstName = firstName;
     this->secondName = secondName;
     this->password = password;
@@ -14,14 +17,15 @@ Account::Account(string firstName, string secondName, string password) {
     this->id = nextId;
     nextId += 1;
     
-    this->allAccounts.push_back(*this);
+    Account::allAccounts.push_back(*this);
 
-    cout << "Your ID is ";
-    cout << this->id << endl;
+    if (defaultAcc == false) {
+        cout << "Your ID is ";
+        cout << this->id << endl;
 
-    cout << "Your Password is ";
-    cout << this->password << endl;
-
+        cout << "Your Password is ";
+        cout << this->password << endl;
+    }
 
 }
 
@@ -35,29 +39,78 @@ string Account::getName() {
 
 string Account::options() {
 
-    cout << "Enter the number beside desired choice." << endl;
+    while (true) {
+        cout << "Enter the number beside desired choice." << endl;
 
-    cout << "1. Login" << endl;
-    cout << "2. Create Booking" << endl;
+        cout << "1. Login" << endl;
+        cout << "2. Create Booking" << endl;
     
-    int choice;
-    cin >> choice;
+        int choice;
+        cin >> choice;
 
-    if (choice == 1) {
-        cout << "Enter ID : " << endl;
-        int identifier;
-        cin >> identifier;
+        if (choice == 1) {
+            cout << "Enter ID : " << endl;
+            int identifier;
+            cin >> identifier;
 
-        cout <<"Enter password :" << endl;
-        string pass;
-        cin >> pass;
+            cout <<"Enter password :" << endl;
+            string pass;
+            cin >> pass;
 
+            int loginVal = Account::login(identifier, pass);
 
+            if (loginVal == -1) {
+                cout << "Incorrect login details" << endl;
+            }
+            else {
+                Account::allAccounts[loginVal].options();
+            }
+        }
+        else if (choice == 2) {
+            this->bookFlight(NULL);
+        }
     }
 
-
-    return "An Account was created.";
+    return "";
 }
+
+void Account::bookFlight(Passenger* booker = NULL) {
+    cout << "Enter the ID of the flight you wish to book" << endl;
+    for (int i=0; i<Flight::allFlights.size(); i++) {
+        cout << i;
+        cout << " : From ";
+        cout << Flight::allFlights[i].getStart();
+        cout << " to ";
+        cout << Flight::allFlights[i].getEnd();
+        cout << " on ";
+        cout << Flight::allFlights[i].getDate() << endl;
+    }
+
+    int flightChoice;
+    cin >> flightChoice;
+
+    if (booker == NULL) {
+        string fname;
+        string sname;
+        string pass;
+        
+        cout << "Enter your First name :" << endl;
+        cin >> fname;
+
+        cout << "Enter your Second name :" << endl;
+        cin >> sname;
+
+        cout << "Enter a password :" << endl;
+        cin >> pass;
+
+        Passenger newPassenger(fname, sname, pass);              
+        Flight::allFlights[flightChoice].bookSeat(&newPassenger);
+    }
+    else {
+        Flight::allFlights[flightChoice].bookSeat(booker);
+    }
+}
+
 
 string Account::getPassword() {
     return this->password;

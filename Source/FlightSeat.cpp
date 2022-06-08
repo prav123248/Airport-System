@@ -15,4 +15,6 @@ void FlightSeat::assignBooking(Booking* forBooking) {
     this->forBooking = forBooking;
 }
 
-
+PlaneSeat* FlightSeat::getSeat() {
+    return this->forSeat;
+}
