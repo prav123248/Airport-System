@@ -9,7 +9,7 @@ using namespace std;
 class Admin : public Account{
     
     public:
-        Admin(string firstName, string secondName);
+        Admin(string firstName, string secondName, string password);
         string options();
         
 

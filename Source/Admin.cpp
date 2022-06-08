@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Admin::Admin(string firstName, string secondName) : Account(firstName, secondName){}
+Admin::Admin(string firstName, string secondName, string password) : Account(firstName, secondName, password){}
 
 string Admin::options() {
 
@@ -49,7 +49,7 @@ string Admin::options() {
         else if (choice == 3) {
             
             cout << "Enter the number beside the desired Plane:" << endl;
-            cout << Plane::allPlanes.size() << endl;
+            
             for (int i=1; i<=Plane::allPlanes.size(); i++) {
                 cout << i;
                 cout << ".";
@@ -90,6 +90,47 @@ string Admin::options() {
         
         }
         else if (choice == 4) {
+            cout << "Enter the number beside the desired plane." << endl;
+
+            for (int i=1; i<=Plane::allPlanes.size(); i++) {
+                cout << i;
+                cout << ".";
+                cout << Plane::allPlanes[i-1].getName() << endl;
+            }
+
+            int planeChoice;
+            cin >> planeChoice;
+            planeChoice -= 1;
+
+            cout << Plane::allPlanes[planeChoice].getPlaneSeats().size();
+            for (int k=0; k<Plane::allPlanes[planeChoice].getPlaneSeats().size(); k++) {
+                cout << "Seat ";
+                cout << Plane::allPlanes[planeChoice].getPlaneSeats()[k].getSeat() << endl;
+            }
+
+            cout << "Enter the number beside desired choice." << endl;
+            cout << "1. Add Planeseats" << endl;
+            cout << "2. Remove Planeseats" << endl;
+
+            int option;
+            cin >> option;
+
+            if (option == 1) {
+                cout << "Enter the new seats to add (commas between each option and a * for business class :" << endl;
+                string seats;
+                cin >> seats;
+
+                PlaneSeat::loadPlaneSeats(seats, true);
+                Plane::allPlanes[planeChoice].assignPlaneSeats(seats);
+            }
+            else if (option == 2) {
+                cout << "Enter the seats to remove (commas between each option and a * for business class :" << endl;
+                string seats;
+                cin >> seats;
+
+                Plane::allPlanes[planeChoice].removePlaneSeats(seats);
+            }
+
         }
         else if (choice == 5) {
             break;

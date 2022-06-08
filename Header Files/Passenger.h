@@ -13,7 +13,7 @@ class Passenger : public Account{
     vector <Booking*> bookings;
     
     public:
-        Passenger(string firstName, string secondName, Booking* book);
+        Passenger(string firstName, string secondName, Booking* book, string password);
         void book(Booking book);
         string options();
         

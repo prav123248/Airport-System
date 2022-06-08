@@ -78,25 +78,32 @@ void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
     }
 }
 
-vector<PlaneSeat> PlaneSeat::loadSeatObjects(string seats) {
-
-    vector<PlaneSeat> seatObjects;
-
+vector<PlaneSeat> PlaneSeat::loadSeatObjects(string seats, vector<PlaneSeat> seatArray) {
+    
     string seatBuffer;
+    seatType type = economy;
     for (auto i : seats) {
         if (i == ',') {
     
-            for (int i=0; i<allPlaneSeats.size(); i++) {
-                if (seatBuffer == allPlaneSeats[i].getSeat()) {
-                    seatObjects.push_back(allPlaneSeats[i]);
+            for (int k=0; k<allPlaneSeats.size(); k++) {
+                if (seatBuffer == allPlaneSeats[k].getSeat() and allPlaneSeats[k].getSeatType() == type) {
+                    seatArray.push_back(allPlaneSeats[k]);
                     break;
                 }
             }
+            seatBuffer = "";
+            type = economy;
+        }
+        else if (i == '*') {
+            type = business;
         }
         else {
             seatBuffer += i;
         }
     }
+    
 
-    return seatObjects;
+
+    return seatArray;
 }
+

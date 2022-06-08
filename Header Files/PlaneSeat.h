@@ -12,7 +12,6 @@ class PlaneSeat {
     private:
         PlaneSeat(string seat, seatType seatClass);
         string seatValue;
-        static vector<PlaneSeat> allPlaneSeats;
         seatType type;
 
     public:
@@ -20,8 +19,10 @@ class PlaneSeat {
         void setSeatType(bool economySeat);
         static bool seatCreator(string seat, seatType seatClass);
         static void loadPlaneSeats(string seats, bool messageDisplay);
-        static vector<PlaneSeat> loadSeatObjects(string seats);
+        static vector<PlaneSeat> loadSeatObjects(string seats, vector<PlaneSeat> seatArray);
         string getSeat();
+        static vector<PlaneSeat> allPlaneSeats;
+        
         
 
 };

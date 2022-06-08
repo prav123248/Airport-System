@@ -13,10 +13,13 @@ class Account {
         string secondName;
         string password;
     public:
-        Account(string firstName, string secondName);
+        Account(string firstName, string secondName, string password);
         int getId();
         string getName();
         string options();
+        string getPassword();
+        static int login(int identifier, string password);
+        static vector<Account> allAccounts;
 
 };
 

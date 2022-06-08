@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Passenger::Passenger(string firstName, string secondName, Booking* book) : Account(firstName, secondName){
+Passenger::Passenger(string firstName, string secondName, Booking* book, string password) : Account(firstName, secondName, password){
     this->bookings.push_back(book);
 }
 

@@ -24,5 +24,6 @@ class Plane {
         int getId();
         string getName();
         vector<PlaneSeat> getPlaneSeats();
-
+        void assignPlaneSeats(string seats);
+        void removePlaneSeats(string seats);
 };
