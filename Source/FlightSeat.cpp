@@ -18,3 +18,18 @@ void FlightSeat::assignBooking(Booking* forBooking) {
 PlaneSeat* FlightSeat::getSeat() {
     return this->forSeat;
 }
+
+string FlightSeat::getSeatString() {
+
+    string type;
+    if (this->forSeat->getSeatType() == economy) {
+        type = "Economy";
+    }
+    else {
+        type = "Business";
+    }
+
+    this->forSeat->getSeat() + " : "  + type;
+
+    return "this";
+}

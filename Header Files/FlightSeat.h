@@ -22,6 +22,5 @@ class FlightSeat {
         FlightSeat(Flight* forFlight, PlaneSeat* forSeat);
         void assignBooking(Booking* forBooking);
         PlaneSeat* getSeat();
-        
-
+        string getSeatString();
 };

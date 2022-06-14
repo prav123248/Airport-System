@@ -11,13 +11,11 @@ Flight::Flight(string start, string end, Plane servingPlane, string date) {
 
     vector<PlaneSeat> planeSeat = servingPlane.getPlaneSeats();
 
-    vector<FlightSeat> seatsArray;
     for (int i=0; i<planeSeat.size(); i++) {
         FlightSeat newFlightSeat(this, &planeSeat[i]);
-        seatsArray.push_back(newFlightSeat);
+        this->seats.push_back(newFlightSeat);
     }
 
-    this->seats = seatsArray;
     this->plane = &servingPlane;
     allFlights.push_back(*this);
 };
@@ -43,23 +41,36 @@ Plane Flight::getPlane() {
 }
 
 void Flight::bookSeat(Passenger* booker) {
-    for (int i=0; i<this->seats.size(); i++) {
-        cout << i;
-        cout << " : ";
-        cout << this->seats[i].getSeat()->getSeat();
 
-        if (this->seats[i].getSeat()->getSeatType() == economy) {
-            cout << " - Economy";
-        }
-        else {
-            cout << " - Business";
-        }
-
-    }
-
-    cout << "Enter the number of the desired seat:";
-    int seatChoice;
+    cout << "Enter the desired seat:";
+    string seatChoice;
     cin >> seatChoice;
 
-    Booking newBooking(this, & this->seats[seatChoice], booker);
+    for (int i=0; i<this->seats.size(); i++) {
+        PlaneSeat* shit = this->seats[i].getSeat();
+        PlaneSeat converted = * shit;
+        cout << converted.getSeat() << endl;
+        if (this->seats[i].getSeat()->getSeat() == seatChoice) {
+            cout << "Hello";
+        }
+
+        cout <<" SHUTSHHH";
+    }
+
+
+    Booking newBooking(this, & this->seats[0], booker);
+}
+
+FlightSeat Flight::getSeat(string seatVal, seatType type) {
+    
+    cout << seatVal << endl;
+    for (int i=0; i<this->seats.size(); i++) {
+        cout << this->seats[i].getSeat()->getSeat() << endl;
+        if (this->seats[i].getSeat()->getSeat() == seatVal and this->seats[i].getSeat()->getSeatType() == type) {
+            return this->seats[i];
+        }
+    }
+
+    return this->seats[0];
+
 }

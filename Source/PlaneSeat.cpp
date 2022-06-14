@@ -8,7 +8,6 @@ vector<PlaneSeat> PlaneSeat::allPlaneSeats;
 
 PlaneSeat::PlaneSeat(string seat, seatType seatClass) {
     this->seatValue = seat;
-    
     this->type = seatClass;
 
 }

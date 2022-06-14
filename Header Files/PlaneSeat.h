@@ -11,7 +11,7 @@ class PlaneSeat {
 
     private:
         PlaneSeat(string seat, seatType seatClass);
-        string seatValue;
+        
         seatType type;
 
     public:
@@ -22,6 +22,7 @@ class PlaneSeat {
         static vector<PlaneSeat> loadSeatObjects(string seats, vector<PlaneSeat> seatArray);
         string getSeat();
         static vector<PlaneSeat> allPlaneSeats;
+        string seatValue;
         
         
 
