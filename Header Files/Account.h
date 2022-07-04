@@ -20,7 +20,7 @@ class Account {
         string getName();
         string options();
         string getPassword();
-        void bookFlight(Passenger* booker);
+        void bookFlight(Passenger* booker = NULL);
         static int login(int identifier, string password);
         static vector<Account*> allAccounts;
 

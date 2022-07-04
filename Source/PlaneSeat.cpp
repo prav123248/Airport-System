@@ -46,11 +46,10 @@ void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
     seatType seatClass = economy;
     string seatStringType = "";
     bool seatExist = false;
-    messageDisplay = true;
     for (auto i : seats) {
         
         if (i == ',') {
-            cout << seat << endl;
+            cout << "Seat created : " << seat << endl;
             seatExist = PlaneSeat::seatCreator(seat, seatClass);
             if (seatClass == economy) {
                 seatStringType = "economy";
@@ -85,11 +84,14 @@ void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
 }
 
 vector<PlaneSeat*> PlaneSeat::loadSeatObjects(string seats) {
+
     string seatBuffer = "";
     seatType type = economy;
     vector<PlaneSeat*> seatArray;
+
     for (auto i : seats) {
         if (i == ',') {
+            cout << "";
             for (int k=0; k<allPlaneSeats.size(); k++) {
                 if (seatBuffer == allPlaneSeats[k]->getSeat() and allPlaneSeats[k]->getSeatType() == type) {
                     seatArray.push_back(allPlaneSeats[k]);
@@ -106,6 +108,8 @@ vector<PlaneSeat*> PlaneSeat::loadSeatObjects(string seats) {
             seatBuffer += i;
         }
     }
+
+
 
     return seatArray;
 }

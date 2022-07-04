@@ -28,10 +28,6 @@ void loadFile() {
     Flight flight4("Japan", "France", &Eagle, "03/01/2000");
     Flight flight5("Norway", "Egypt", &Eagle, "22/04/2001");
 
-    
-
-    cout << PlaneSeat::allPlaneSeats[0]->seatValue;
-
     //Generate Passengers
     Passenger pass1("Kazuo", "Nakamura", "pass");
     Passenger pass2("Kira", "Chrollo", "pass");

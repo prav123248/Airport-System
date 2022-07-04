@@ -39,15 +39,12 @@ string Account::getName() {
 
 string Account::options() {
 
-    cout << PlaneSeat::allPlaneSeats[0]->seatValue;
-
     while (true) {
         cout << "Enter the number beside desired choice." << endl;
 
         cout << "1. Login" << endl;
         cout << "2. Create Booking" << endl;
-        cout << PlaneSeat::allPlaneSeats[0]->seatValue;
-    
+            
         int choice;
         cin >> choice;
 
@@ -70,17 +67,14 @@ string Account::options() {
             }
         }
         else if (choice == 2) {
-        cout << PlaneSeat::allPlaneSeats[0]->seatValue;
-
-            this->bookFlight(NULL);
+            this->bookFlight(nullptr);
         }
     }
 
     return "";
 }
 
-void Account::bookFlight(Passenger* booker = NULL) {
-    cout << PlaneSeat::allPlaneSeats[0]->seatValue;
+void Account::bookFlight(Passenger* booker) {
 
     cout << "Enter the ID of the flight you wish to book" << endl;
     for (int i=0; i<Flight::allFlights.size(); i++) {
