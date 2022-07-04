@@ -4,7 +4,7 @@
 #include "../Header Files/PlaneSeat.h"
 
 
-vector<PlaneSeat> PlaneSeat::allPlaneSeats;
+vector<PlaneSeat*> PlaneSeat::allPlaneSeats;
 
 PlaneSeat::PlaneSeat(string seat, seatType seatClass) {
     this->seatValue = seat;
@@ -13,14 +13,15 @@ PlaneSeat::PlaneSeat(string seat, seatType seatClass) {
 }
 
 bool PlaneSeat::seatCreator(string seat, seatType seatClass) {
+
     for (int i=0; i<allPlaneSeats.size(); i++) {
-        if (seat == allPlaneSeats[i].getSeat() and seatClass == allPlaneSeats[i].getSeatType()) {
+        if (seat == allPlaneSeats[i]->getSeat() and seatClass == allPlaneSeats[i]->getSeatType()) {
             return false;
         }
     }
 
     PlaneSeat newPlaneSeat(seat, seatClass);
-    allPlaneSeats.push_back(newPlaneSeat);
+    allPlaneSeats.push_back(&newPlaneSeat);
     return true;
 }
 
@@ -41,13 +42,16 @@ void PlaneSeat::setSeatType(bool economySeat) {
 }
 
 void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
-    string seat;
+    string seat = "";
     seatType seatClass = economy;
+    string seatStringType = "";
+    bool seatExist = false;
+    messageDisplay = true;
     for (auto i : seats) {
+        
         if (i == ',') {
-            bool seatExist = PlaneSeat::seatCreator(seat, seatClass);
-
-            string seatStringType;
+            cout << seat << endl;
+            seatExist = PlaneSeat::seatCreator(seat, seatClass);
             if (seatClass == economy) {
                 seatStringType = "economy";
             }
@@ -72,20 +76,22 @@ void PlaneSeat::loadPlaneSeats(string seats, bool messageDisplay) {
         } 
         else {
             seat += i;
-        }
             
+        }
+       
     }
+
+
 }
 
-vector<PlaneSeat> PlaneSeat::loadSeatObjects(string seats, vector<PlaneSeat> seatArray) {
-    
-    string seatBuffer;
+vector<PlaneSeat*> PlaneSeat::loadSeatObjects(string seats) {
+    string seatBuffer = "";
     seatType type = economy;
+    vector<PlaneSeat*> seatArray;
     for (auto i : seats) {
         if (i == ',') {
-    
             for (int k=0; k<allPlaneSeats.size(); k++) {
-                if (seatBuffer == allPlaneSeats[k].getSeat() and allPlaneSeats[k].getSeatType() == type) {
+                if (seatBuffer == allPlaneSeats[k]->getSeat() and allPlaneSeats[k]->getSeatType() == type) {
                     seatArray.push_back(allPlaneSeats[k]);
                     break;
                 }
@@ -100,8 +106,6 @@ vector<PlaneSeat> PlaneSeat::loadSeatObjects(string seats, vector<PlaneSeat> sea
             seatBuffer += i;
         }
     }
-    
-
 
     return seatArray;
 }

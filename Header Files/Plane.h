@@ -14,16 +14,16 @@ class Plane {
     private:
         int id;
         string name;
-        vector<Flight> flights;
-        vector<PlaneSeat> planeSeats;
+        vector<Flight*> flights;
+        vector<PlaneSeat*> planeSeats;
 
     public:
         Plane(string name,string seats);
-        void addFlight(Flight serveFlight);
-        static vector<Plane> allPlanes;
+        void addFlight(Flight* serveFlight);
+        static vector<Plane*> allPlanes;
         int getId();
         string getName();
-        vector<PlaneSeat> getPlaneSeats();
+        vector<PlaneSeat*> getPlaneSeats();
         void assignPlaneSeats(string seats);
         void removePlaneSeats(string seats);
 };

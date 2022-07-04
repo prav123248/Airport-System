@@ -10,8 +10,8 @@ Passenger::Passenger(string firstName, string secondName, string password) : Acc
 }
 
 
-void Passenger::book(Booking book) {
-    this->bookings.push_back(&book);
+void Passenger::book(Booking* book) {
+    this->bookings.push_back(book);
 
 }
 

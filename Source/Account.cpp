@@ -6,7 +6,7 @@
 #include "../Header Files/Flight.h"
 
 int Account::nextId = 0;
-vector<Account> Account::allAccounts;
+vector<Account*> Account::allAccounts;
 
 
 Account::Account(string firstName, string secondName, string password, bool defaultAcc) {
@@ -17,7 +17,7 @@ Account::Account(string firstName, string secondName, string password, bool defa
     this->id = nextId;
     nextId += 1;
     
-    Account::allAccounts.push_back(*this);
+    Account::allAccounts.push_back(this);
 
     if (defaultAcc == false) {
         cout << "Your ID is ";
@@ -39,14 +39,14 @@ string Account::getName() {
 
 string Account::options() {
 
-    cout << PlaneSeat::allPlaneSeats[0].seatValue;
+    cout << PlaneSeat::allPlaneSeats[0]->seatValue;
 
     while (true) {
         cout << "Enter the number beside desired choice." << endl;
 
         cout << "1. Login" << endl;
         cout << "2. Create Booking" << endl;
-        cout << PlaneSeat::allPlaneSeats[0].seatValue;
+        cout << PlaneSeat::allPlaneSeats[0]->seatValue;
     
         int choice;
         cin >> choice;
@@ -66,11 +66,11 @@ string Account::options() {
                 cout << "Incorrect login details" << endl;
             }
             else {
-                Account::allAccounts[loginVal].options();
+                Account::allAccounts[loginVal]->options();
             }
         }
         else if (choice == 2) {
-        cout << PlaneSeat::allPlaneSeats[0].seatValue;
+        cout << PlaneSeat::allPlaneSeats[0]->seatValue;
 
             this->bookFlight(NULL);
         }
@@ -80,17 +80,17 @@ string Account::options() {
 }
 
 void Account::bookFlight(Passenger* booker = NULL) {
-    cout << PlaneSeat::allPlaneSeats[0].seatValue;
+    cout << PlaneSeat::allPlaneSeats[0]->seatValue;
 
     cout << "Enter the ID of the flight you wish to book" << endl;
     for (int i=0; i<Flight::allFlights.size(); i++) {
         cout << i;
         cout << " : From ";
-        cout << Flight::allFlights[i].getStart();
+        cout << Flight::allFlights[i]->getStart();
         cout << " to ";
-        cout << Flight::allFlights[i].getEnd();
+        cout << Flight::allFlights[i]->getEnd();
         cout << " on ";
-        cout << Flight::allFlights[i].getDate() << endl;
+        cout << Flight::allFlights[i]->getDate() << endl;
     }
 
     
@@ -116,10 +116,10 @@ void Account::bookFlight(Passenger* booker = NULL) {
 
         Passenger newPassenger(fname, sname, pass);
                     
-        Flight::allFlights[flightChoice].bookSeat(&newPassenger);
+        Flight::allFlights[flightChoice]->bookSeat(&newPassenger);
     }
     else {
-        Flight::allFlights[flightChoice].bookSeat(booker);
+        Flight::allFlights[flightChoice]->bookSeat(booker);
     }
 }
 
@@ -131,7 +131,7 @@ string Account::getPassword() {
 int Account::login(int identifier, string password) {
 
     for (int i=0; i<allAccounts.size(); i++) {
-        if (allAccounts[i].getId() == identifier and allAccounts[i].getPassword() == password) {
+        if (allAccounts[i]->getId() == identifier and allAccounts[i]->getPassword() == password) {
             return i;
         }
     }

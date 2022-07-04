@@ -22,7 +22,7 @@ class Account {
         string getPassword();
         void bookFlight(Passenger* booker);
         static int login(int identifier, string password);
-        static vector<Account> allAccounts;
+        static vector<Account*> allAccounts;
 
 };
 

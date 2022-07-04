@@ -14,7 +14,7 @@ class Passenger : public Account{
     
     public:
         Passenger(string firstName, string secondName, string password);
-        void book(Booking book);
+        void book(Booking* book);
         string options();
         
 

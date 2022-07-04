@@ -3,25 +3,29 @@
 
 using namespace std;
 
-vector<Plane> Plane::allPlanes;
+vector<Plane*> Plane::allPlanes;
 
 Plane::Plane(string name,string seats) {
-    this->name = name;
-    this->planeSeats = PlaneSeat::loadSeatObjects(seats, this->planeSeats);
 
+    this->name = name;
+
+    this->planeSeats = PlaneSeat::loadSeatObjects(seats);
 
     if (allPlanes.size() == 0) {
         this->id = 1;
     }
     else {
-        this->id = allPlanes.back().id += 1;
+
+        this->id = allPlanes.back()->id += 1;
     }
 
-    allPlanes.push_back(*this);
+    allPlanes.push_back(this);
+
+
 
 }
 
-void Plane::addFlight(Flight serveFlight) {
+void Plane::addFlight(Flight* serveFlight) {
     flights.push_back(serveFlight);
 }
 
@@ -33,19 +37,20 @@ string Plane::getName() {
     return this->name;
 }
 
-vector<PlaneSeat> Plane::getPlaneSeats() {
+vector<PlaneSeat*> Plane::getPlaneSeats() {
     return this->planeSeats;
 }
 
 void Plane::assignPlaneSeats(string seats) {
 
-    string seat;
+    string seat = "";
     seatType type = economy;
     for (auto i : seats) {
+       
         if (i == ',') {
             bool exists = false;
             for (int k=0; k<this->planeSeats.size(); k++) {
-                if (this->planeSeats[k].getSeat() == seat and this->planeSeats[k].getSeatType() == type) {
+                if (this->planeSeats[k]->getSeat() == seat and this->planeSeats[k]->getSeatType() == type) {
                     exists = true;
                     break;
                 }
@@ -53,7 +58,7 @@ void Plane::assignPlaneSeats(string seats) {
 
             if (exists == false) {
                 for (int k=0; k<PlaneSeat::allPlaneSeats.size(); k++) {
-                    if (PlaneSeat::allPlaneSeats[k].getSeat() == seat and PlaneSeat::allPlaneSeats[k].getSeatType() == type) {
+                    if (PlaneSeat::allPlaneSeats[k]->getSeat() == seat and PlaneSeat::allPlaneSeats[k]->getSeatType() == type) {
                         this->planeSeats.push_back(PlaneSeat::allPlaneSeats[k]);
                     }
                 }
@@ -68,6 +73,7 @@ void Plane::assignPlaneSeats(string seats) {
         }
         else {
             seat += i;
+
         }
     }
      
@@ -75,12 +81,12 @@ void Plane::assignPlaneSeats(string seats) {
 
  void Plane::removePlaneSeats(string seats) {
 
-    string seat;
+    string seat = "";
     seatType type = economy;
     for (auto i : seats) {
         if (i == ',') {
             for (int k=0; k<this->planeSeats.size(); k++) {
-                if (this->planeSeats[k].getSeat() == seat and this->planeSeats[k].getSeatType() == type) {
+                if (this->planeSeats[k]->getSeat() == seat and this->planeSeats[k]->getSeatType() == type) {
                     this->planeSeats.erase(this->planeSeats.begin() + k);
                 }
             }

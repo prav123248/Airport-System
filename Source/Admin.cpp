@@ -54,7 +54,7 @@ string Admin::options() {
             for (int i=1; i<=Plane::allPlanes.size(); i++) {
                 cout << i;
                 cout << ".";
-                cout << Plane::allPlanes[i-1].getName() << endl;
+                cout << Plane::allPlanes[i-1]->getName() << endl;
             }
 
             cout << "Enter the number beside the desired Plane:" << endl;
@@ -79,14 +79,14 @@ string Admin::options() {
 
                 cout << start + " is the departure location" << endl;
                 cout << end + " is the destination." << endl;
-                cout << Plane::allPlanes[chosenPlane].getName();
+                cout << Plane::allPlanes[chosenPlane]->getName();
                 cout << " is the plane." << endl;
                
                 Flight newFlight(start, end, Plane::allPlanes[chosenPlane], date);
             }
 
             for (int i=0; i<Flight::allFlights.size(); i++) {
-                cout << "From " << Flight::allFlights[i].getStart() << " to " << Flight::allFlights[i].getEnd() << " on "  << Flight::allFlights[i].getDate() << " using Plane " << Flight::allFlights[i].getPlane().getName() << endl;
+                cout << "From " << Flight::allFlights[i]->getStart() << " to " << Flight::allFlights[i]->getEnd() << " on "  << Flight::allFlights[i]->getDate() << " using Plane " << Flight::allFlights[i]->getPlane()->getName() << endl;
             }
         
         }
@@ -96,17 +96,17 @@ string Admin::options() {
             for (int i=1; i<=Plane::allPlanes.size(); i++) {
                 cout << i;
                 cout << ".";
-                cout << Plane::allPlanes[i-1].getName() << endl;
+                cout << Plane::allPlanes[i-1]->getName() << endl;
             }
 
             int planeChoice;
             cin >> planeChoice;
             planeChoice -= 1;
 
-            cout << Plane::allPlanes[planeChoice].getPlaneSeats().size();
-            for (int k=0; k<Plane::allPlanes[planeChoice].getPlaneSeats().size(); k++) {
+            cout << Plane::allPlanes[planeChoice]->getPlaneSeats().size();
+            for (int k=0; k<Plane::allPlanes[planeChoice]->getPlaneSeats().size(); k++) {
                 cout << "Seat ";
-                cout << Plane::allPlanes[planeChoice].getPlaneSeats()[k].getSeat() << endl;
+                cout << Plane::allPlanes[planeChoice]->getPlaneSeats()[k]->getSeat() << endl;
             }
 
             cout << "Enter the number beside desired choice." << endl;
@@ -122,14 +122,14 @@ string Admin::options() {
                 cin >> seats;
 
                 PlaneSeat::loadPlaneSeats(seats, true);
-                Plane::allPlanes[planeChoice].assignPlaneSeats(seats);
+                Plane::allPlanes[planeChoice]->assignPlaneSeats(seats);
             }
             else if (option == 2) {
                 cout << "Enter the seats to remove (commas between each option and a * for business class :" << endl;
                 string seats;
                 cin >> seats;
 
-                Plane::allPlanes[planeChoice].removePlaneSeats(seats);
+                Plane::allPlanes[planeChoice]->removePlaneSeats(seats);
             }
 
         }
